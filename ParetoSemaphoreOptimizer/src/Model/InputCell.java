@@ -43,6 +43,13 @@ public class InputCell extends Cell{
     public String toString() {
         return "InputCell{" + "numCarsAwaiting=" + numCarsAwaiting + "currentStatus"+ this.currentStatus+ '}';
     }
+
+    @Override
+    public void reset() {
+        super.reset();
+        numCarsAwaiting=0;//To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     
 }

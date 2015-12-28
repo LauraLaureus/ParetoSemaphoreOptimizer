@@ -10,7 +10,7 @@ public class Simulator {
     private final Road h2 = new Road(RoadSense.Horizontal);
     private final Road v = new Road(RoadSense.Vertical);
     private final Road v2 = new Road(RoadSense.Vertical);
-    //añadir el simulate updator
+    
 
     public Simulator() {
         h.intersectRoads(v, 1, 1);
@@ -18,6 +18,8 @@ public class Simulator {
         h2.intersectRoads(v, 1, 2);
         h2.intersectRoads(v2, 2, 2);
     }
+    
+ 
 
     public double simulate(boolean[][] semaphoreHistory) {
 
@@ -27,7 +29,7 @@ public class Simulator {
                 v.addCar();
                 v2.addCar();
             if (i % 10 == 0) {
-                boolean[] thisTime = semaphoreHistory[i % 10];
+                boolean[] thisTime = semaphoreHistory[i % 12];
                 h.sem1NextStatus(thisTime[0]);
                 v.sem1NextStatus(!thisTime[0]);
 
@@ -44,8 +46,10 @@ public class Simulator {
             
             updateSimulator();
         }
-
-        return (double) ((h.count() + v.count() + h2.count() + v2.count()) / 28800d);
+        
+        double fitness = (double) ((h.count() + v.count() + h2.count() + v2.count()) / ((double)4*7200));
+        this.reset();
+        return fitness;
 
     }
     
@@ -118,5 +122,20 @@ public class Simulator {
             h2.updateInRange(8, 8);
             h2.updateInRange(10, 13);
         }
+        /*if(h.roadData.get(13).currentStatus == Status.BUSY)
+                System.out.println("Carretera horizontal1: +1");
+        if(h2.roadData.get(13).currentStatus == Status.BUSY)
+                System.out.println("Carretera horizontal2: +1");
+        if(v.roadData.get(13).currentStatus == Status.BUSY)
+                System.out.println("Carretera vertical1: +1");
+        if(v2.roadData.get(13).currentStatus == Status.BUSY)
+                System.out.println("Carretera vertical2: +1");*/
+    }
+    
+    public void reset(){
+        h.reset();
+        h2.reset();
+        v.reset();
+        v2.reset();
     }
 }

@@ -260,6 +260,15 @@ public class Road {
         }
     }
     
+    public double getContaminationInRange(int i, int j){
+        double result = 0;
+        for (int k = i; k <= j ; k++) {
+            result += roadData.get(k).getPollution();
+        }
+        
+        return result;
+    }
+    
     @Override
     public String toString() {
         String s = "Road{" + "sense=" + sense;
@@ -270,6 +279,12 @@ public class Road {
         s += '}';
         return s;
 
+    }
+    
+    public void reset(){
+        for (Cell cell : roadData) {
+            cell.reset();
+        }
     }
 
 }

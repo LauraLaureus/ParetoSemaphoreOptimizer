@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="simulatorPane" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="iterTextField" min="-2" pref="89" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
+                      <Component id="nextStateButton" min="-2" pref="61" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="carsInLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="carsInTextField" min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="carsOutLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="carsOutTextfield" min="-2" pref="84" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="hSemTatusTextField" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="proptionLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="proptionTextField" min="-2" pref="127" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                      <Component id="resetbutton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="simulatorPane" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="carsInLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="carsInTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="carsOutLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="carsOutTextfield" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="proptionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="proptionTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hSemTatusTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="resetbutton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="nextStateButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="iterTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="nextStateButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Next"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextStateButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JPanel" name="simulatorPane">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Simulator"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="h11" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="h12" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="h13" min="-2" pref="22" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="h21" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="h22" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="h23" min="-2" pref="22" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="h14s" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="i11" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h15p" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h16" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h17" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h18s" min="-2" pref="23" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="v11" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v12" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v13" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v14s" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v15p" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v16" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v17" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v18s" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Component id="h24s" min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="v19p" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="i21" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="h25p" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h26" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h27" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h28s" min="-2" pref="22" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="v110" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v111" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v112o" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="i22" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="h29p" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h210" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h211" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="h212o" min="-2" pref="22" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="v28s" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="v27" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="v26" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="v25p" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="v24s" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="v23" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="v21" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="i12" min="-2" pref="23" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="h19p" min="-2" pref="23" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="h110" min="-2" pref="23" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="h111" min="-2" pref="23" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="h112o" min="-2" pref="23" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="v22" min="-2" pref="23" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="v29p" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v210" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v211" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="v212o" min="-2" pref="22" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="v11" min="-2" pref="18" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="v12" min="-2" pref="18" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="v13" min="-2" pref="18" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="v21" min="-2" pref="18" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="v22" min="-2" pref="18" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="v23" min="-2" pref="18" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="v14s" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="v24s" min="-2" pref="18" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="h14s" pref="24" max="32767" attributes="0"/>
+                                      <Component id="h12" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="h11" max="32767" attributes="0"/>
+                                      <Component id="h13" max="32767" attributes="0"/>
+                                      <Component id="i11" max="32767" attributes="0"/>
+                                      <Component id="h15p" max="32767" attributes="0"/>
+                                      <Component id="h16" max="32767" attributes="0"/>
+                                      <Component id="h17" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="h18s" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="i12" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="h19p" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="h110" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="h111" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="h112o" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="v15p" min="-2" pref="18" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="v25p" min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="v16" min="-2" pref="18" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="v26" min="-2" pref="18" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="v17" min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="v27" min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="v18s" min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="h27" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="i21" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="v19p" min="-2" pref="18" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="v28s" min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="i22" min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="v29p" min="-2" pref="18" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="h28s" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="h26" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="h25p" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="h24s" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="h23" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="h212o" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="h211" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="h210" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="h29p" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="h22" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="h21" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="v110" min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="v210" min="-2" pref="18" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="v111" min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="v211" min="-2" pref="18" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="v112o" min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="v212o" min="-2" pref="18" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="i11">
+        </Component>
+        <Component class="javax.swing.JButton" name="h11">
+        </Component>
+        <Component class="javax.swing.JButton" name="h12">
+        </Component>
+        <Component class="javax.swing.JButton" name="v11">
+        </Component>
+        <Component class="javax.swing.JButton" name="h14s">
+        </Component>
+        <Component class="javax.swing.JButton" name="v13">
+        </Component>
+        <Component class="javax.swing.JButton" name="v12">
+        </Component>
+        <Component class="javax.swing.JButton" name="v14s">
+        </Component>
+        <Component class="javax.swing.JButton" name="h13">
+        </Component>
+        <Component class="javax.swing.JButton" name="h15p">
+        </Component>
+        <Component class="javax.swing.JButton" name="h16">
+        </Component>
+        <Component class="javax.swing.JButton" name="h17">
+        </Component>
+        <Component class="javax.swing.JButton" name="h18s">
+        </Component>
+        <Component class="javax.swing.JButton" name="i12">
+        </Component>
+        <Component class="javax.swing.JButton" name="v24s">
+        </Component>
+        <Component class="javax.swing.JButton" name="v21">
+        </Component>
+        <Component class="javax.swing.JButton" name="v23">
+        </Component>
+        <Component class="javax.swing.JButton" name="v22">
+        </Component>
+        <Component class="javax.swing.JButton" name="h19p">
+        </Component>
+        <Component class="javax.swing.JButton" name="h110">
+        </Component>
+        <Component class="javax.swing.JButton" name="h111">
+        </Component>
+        <Component class="javax.swing.JButton" name="h112o">
+        </Component>
+        <Component class="javax.swing.JButton" name="v15p">
+        </Component>
+        <Component class="javax.swing.JButton" name="v16">
+        </Component>
+        <Component class="javax.swing.JButton" name="v17">
+        </Component>
+        <Component class="javax.swing.JButton" name="v18s">
+        </Component>
+        <Component class="javax.swing.JButton" name="v25p">
+        </Component>
+        <Component class="javax.swing.JButton" name="v26">
+        </Component>
+        <Component class="javax.swing.JButton" name="v27">
+        </Component>
+        <Component class="javax.swing.JButton" name="v28s">
+        </Component>
+        <Component class="javax.swing.JButton" name="i22">
+        </Component>
+        <Component class="javax.swing.JButton" name="h28s">
+        </Component>
+        <Component class="javax.swing.JButton" name="h27">
+        </Component>
+        <Component class="javax.swing.JButton" name="h26">
+        </Component>
+        <Component class="javax.swing.JButton" name="h25p">
+        </Component>
+        <Component class="javax.swing.JButton" name="i21">
+        </Component>
+        <Component class="javax.swing.JButton" name="h24s">
+        </Component>
+        <Component class="javax.swing.JButton" name="h23">
+        </Component>
+        <Component class="javax.swing.JButton" name="h22">
+        </Component>
+        <Component class="javax.swing.JButton" name="h21">
+        </Component>
+        <Component class="javax.swing.JButton" name="h29p">
+        </Component>
+        <Component class="javax.swing.JButton" name="h210">
+        </Component>
+        <Component class="javax.swing.JButton" name="h211">
+        </Component>
+        <Component class="javax.swing.JButton" name="h212o">
+        </Component>
+        <Component class="javax.swing.JButton" name="v19p">
+        </Component>
+        <Component class="javax.swing.JButton" name="v110">
+        </Component>
+        <Component class="javax.swing.JButton" name="v111">
+        </Component>
+        <Component class="javax.swing.JButton" name="v112o">
+        </Component>
+        <Component class="javax.swing.JButton" name="v29p">
+        </Component>
+        <Component class="javax.swing.JButton" name="v210">
+        </Component>
+        <Component class="javax.swing.JButton" name="v211">
+        </Component>
+        <Component class="javax.swing.JButton" name="v212o">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JTextField" name="carsInTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="columns" type="int" value="10"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="carsInLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Num. Cars In:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="carsOutLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Num. Cars Out:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="carsOutTextfield">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="proptionLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Proportion OUT/IN:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="proptionTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Horizontal Sem. Status"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="hSemTatusTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Iteration"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="iterTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="resetbutton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reset"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetbuttonActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>

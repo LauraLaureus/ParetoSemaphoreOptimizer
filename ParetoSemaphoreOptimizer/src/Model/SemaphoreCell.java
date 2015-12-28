@@ -47,6 +47,12 @@ public class SemaphoreCell extends Cell{
         super.update();
         this.semStatus = semNextStatus;
     }
+
+    @Override
+    public void reset() {
+        super.reset();
+        this.semStatus = SemaphoreStatus.OPEN;
+    }
     
     
 }

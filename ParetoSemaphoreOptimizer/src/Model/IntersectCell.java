@@ -73,4 +73,16 @@ public class IntersectCell extends Cell {
         return "IntersectCell{" + "currentGoesVertical=" + currentGoesVertical + "currentStatus" + this.currentStatus + '}';
     }
 
+    @Override
+    public void reset() {
+        super.reset();
+        if (this.sense == RoadSense.Vertical) {
+            currentGoesVertical = true;
+            nextGoesVertical = true;
+        } else {
+            currentGoesVertical = false;
+            nextGoesVertical = false;
+        }
+    }
+ 
 }

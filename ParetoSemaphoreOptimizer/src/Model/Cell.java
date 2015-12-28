@@ -22,4 +22,18 @@ public abstract class Cell {
     public void setNeighbours(ArrayList<Cell> neigh){
         this.neighbours = neigh;
     }
+    
+    public void reset(){
+        currentStatus = Status.FREE;
+        nextStatus = null;
+    }
+
+    double getPollution() {
+        if(currentStatus == Status.BUSY && nextStatus == Status.FREE)
+            return 0.5d;
+        else if (currentStatus == Status.BUSY && nextStatus == Status.BUSY)
+            return 1d;
+        else
+            return 0d;
+    }
 }
