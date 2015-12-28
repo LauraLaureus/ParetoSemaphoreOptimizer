@@ -169,11 +169,15 @@ public class GeneticAlgorithmForSemaphoreOptimization {
             }
             
            r = rand.nextDouble();
-           fitnessA = fitness[indexA] + (1-pollution[indexA]);
-           fitnessB = fitness[indexB] + (1-pollution[indexB]);
+           fitnessA = fitness[indexA] + pollution[indexA];
+           fitnessB = fitness[indexB] + pollution[indexB];
            
            if(fitnessA > 0.2d){
-               double[] aux = {fitness[indexA],(1d -pollution[indexA])};
+               double[] aux = {fitness[indexA],pollution[indexA]};
+               bestOfGeneration.add(aux);
+           }
+           if(fitnessB > 0.2d){
+               double[] aux = {fitness[indexB],pollution[indexB]};
                bestOfGeneration.add(aux);
            }
            
