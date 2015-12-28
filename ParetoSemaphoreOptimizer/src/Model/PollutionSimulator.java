@@ -46,7 +46,7 @@ public class PollutionSimulator {
         }
         
         this.reset();
-        return fitness/7200;
+        return 1- fitness/7200;
 
     }
 

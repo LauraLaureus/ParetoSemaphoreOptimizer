@@ -111,13 +111,14 @@ public class GeneticAlgorithmForSemaphoreOptimization {
             if (fitness[counter] + pollution[counter] > max_combination) {
                 max_rate = fitness[counter];
                 max_pollution = pollution[counter];
+                max_combination = max_rate + max_pollution;
             }
         }
         
-        double[] best = new double[2];
+        /*double[] best = new double[2];
         best[0] = max_rate;
-        best[1] = max_pollution;
-        bestOfGeneration.add(best);
+        best[1] = (1-max_pollution);
+        bestOfGeneration.add(best);*/
         
         return max_combination;
     }
@@ -170,6 +171,11 @@ public class GeneticAlgorithmForSemaphoreOptimization {
            r = rand.nextDouble();
            fitnessA = fitness[indexA] + (1-pollution[indexA]);
            fitnessB = fitness[indexB] + (1-pollution[indexB]);
+           
+           if(fitnessA > 0.2d){
+               double[] aux = {fitness[indexA],(1d -pollution[indexA])};
+               bestOfGeneration.add(aux);
+           }
            
            if((fitnessA < fitnessB && r < selection_p) || (fitnessA > fitnessB && r >= selection_p)){
                result.add(population.get(indexA));
