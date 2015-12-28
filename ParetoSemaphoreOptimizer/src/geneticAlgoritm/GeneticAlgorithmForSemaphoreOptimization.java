@@ -172,11 +172,11 @@ public class GeneticAlgorithmForSemaphoreOptimization {
            fitnessA = fitness[indexA] + pollution[indexA];
            fitnessB = fitness[indexB] + pollution[indexB];
            
-           if(fitnessA > 0.2d){
+           if(fitnessA > 0d){
                double[] aux = {fitness[indexA],pollution[indexA]};
                bestOfGeneration.add(aux);
            }
-           if(fitnessB > 0.2d){
+           if(fitnessB > 0d){
                double[] aux = {fitness[indexB],pollution[indexB]};
                bestOfGeneration.add(aux);
            }

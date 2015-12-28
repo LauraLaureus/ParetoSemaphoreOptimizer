@@ -15,7 +15,7 @@ public class SemaphoreSimulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(50,0.2d,0.02d);
+        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(200,0.2d,0.02d);
         ga.compute();
         plotMaxAndMean(ga.getX(),ga.getY());
         plotPareto(ga.getBestOfGeneration());
