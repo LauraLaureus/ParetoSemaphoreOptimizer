@@ -1,7 +1,7 @@
 package Control;
 
-import Model.Simulator;
 import geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import org.math.plot.*;
 
@@ -15,27 +15,12 @@ public class SemaphoreSimulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(200,0.1d,0.02d);
+        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(100,0d,0.01d);
         ga.compute();
         plotMaxAndMean(ga.getX(),ga.getY());
-        
+        plotPareto(ga.getBestOfGeneration());
     }
 
-    public static double maine(double[][] d) {
-
-        boolean[][] result = new boolean[d.length][d[0].length];
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result[0].length; j++) {
-                if (d[i][j] == 1) {
-                    result[i][j] = true;
-                } else {
-                    result[i][j] = false;
-                }
-            }
-        }
-
-        return new Simulator().simulate(result);
-    }
 
     private static void plotMaxAndMean(double[] max,double[] mean) {
         Plot2DPanel plot = new Plot2DPanel();
@@ -61,5 +46,30 @@ public class SemaphoreSimulator {
             result[i]=i+1;
         }
         return result;
+    }
+
+    private static void plotPareto(ArrayList<double[]> bestOfGeneration) {
+        double[] fitness = new double[bestOfGeneration.size()];
+        double[] pollution = new double[bestOfGeneration.size()];
+        
+        for (int i = 0; i < pollution.length; i++) {
+            fitness[i] = bestOfGeneration.get(i)[0];
+            pollution[i] = 1-bestOfGeneration.get(i)[1];
+        }
+        
+        Plot2DPanel plot = new Plot2DPanel();
+        plot.addScatterPlot("Best Of Generatio", fitness, pollution);
+        
+        // add a line plot to the PlotPanel
+        //plot.addLinePlot("Best Of Generation", fitness,pollution);
+        plot.addLegend("SOUTH");
+        
+        
+        // put the PlotPanel in a JFrame, as a JPanel
+        JFrame frame = new JFrame("Pareto Results");
+        frame.setContentPane(plot);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 }

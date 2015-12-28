@@ -17,8 +17,9 @@ import java.util.Random;
 public class GeneticAlgorithmForSemaphoreOptimization {
 
     private ArrayList<boolean[][]> population;
-    private double[] fitness;
+    private double[] fitness, pollution;
     private double[] maxFitness, meanFitness;
+    private ArrayList<double[]> bestOfGeneration;
     private int[][] mask1, mask2, mask3;
     private final int populationSize;
     private final Simulator sim;
@@ -33,6 +34,9 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         return meanFitness;
     }
 
+    public ArrayList<double[]> getBestOfGeneration(){
+        return this.bestOfGeneration;
+    }
     public GeneticAlgorithmForSemaphoreOptimization(int populationSize,double selection_p, double mutation_p) {
         if(populationSize % 3 != 0){
             populationSize += 3-(populationSize%3);
@@ -45,6 +49,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         this.sim_p = new PollutionSimulator();
         generateInitialPopulation();
         generateMaskForThreeParentCrossover();
+        this.bestOfGeneration = new ArrayList<>();
     }
 
     private void generateInitialPopulation() {
@@ -75,7 +80,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         maxFitness = new double[populationSize];
         meanFitness = new double[populationSize];
         for (int i = 0; i < populationSize; i++) {
-            this.fitness = computeFitness();
+            computeFitness();
             saveData(i);
             this.population = probabilistic_tourneau_selection();
             this.population = three_parent_crossover();
@@ -83,13 +88,13 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         }
     }
 
-    private double[] computeFitness() {
-        double[] result = new double[population.size()];
+    private void computeFitness() {
+        this.fitness = new double[population.size()];
+        this.pollution = new double[population.size()];
         for (int i = 0; i < population.size(); i++) {
-            result[i] = sim.simulate(population.get(i));
-            System.out.println(sim.simulate(population.get(i)));
+            fitness[i] = sim.simulate(population.get(i));
+            pollution[i] = sim.simulate(population.get(i));
         }
-        return result;
     }
 
     private void saveData(int i) {
@@ -98,20 +103,29 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     }
 
     private double calculateMaxFitness() {
-        double max = this.fitness[0];
-
+        double max_rate = this.fitness[0];
+        double max_pollution = this.pollution[0];
+        double max_combination = max_rate + max_pollution;
+        
         for (int counter = 1; counter < fitness.length; counter++) {
-            if (fitness[counter] > max) {
-                max = fitness[counter];
+            if (fitness[counter] + pollution[counter] > max_combination) {
+                max_rate = fitness[counter];
+                max_pollution = pollution[counter];
             }
         }
-        return max;
+        
+        double[] best = new double[2];
+        best[0] = max_rate;
+        best[1] = max_pollution;
+        bestOfGeneration.add(best);
+        
+        return max_combination;
     }
 
     private double calculateMeanFitness() {
         double sum = 0;
         for (int i = 0; i < fitness.length; i++) {
-            sum += fitness[i];
+            sum += fitness[i] + pollution[i];
         }
         return sum / fitness.length;
     }
@@ -154,8 +168,8 @@ public class GeneticAlgorithmForSemaphoreOptimization {
             }
             
            r = rand.nextDouble();
-           fitnessA = fitness[indexA];
-           fitnessB = fitness[indexB];
+           fitnessA = fitness[indexA] + (1-pollution[indexA]);
+           fitnessB = fitness[indexB] + (1-pollution[indexB]);
            
            if((fitnessA < fitnessB && r < selection_p) || (fitnessA > fitnessB && r >= selection_p)){
                result.add(population.get(indexA));
