@@ -34,12 +34,13 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         return meanFitness;
     }
 
-    public ArrayList<double[]> getBestOfGeneration(){
+    public ArrayList<double[]> getBestOfGeneration() {
         return this.bestOfGeneration;
     }
-    public GeneticAlgorithmForSemaphoreOptimization(int populationSize,double selection_p, double mutation_p) {
-        if(populationSize % 3 != 0){
-            populationSize += 3-(populationSize%3);
+
+    public GeneticAlgorithmForSemaphoreOptimization(int populationSize, double selection_p, double mutation_p) {
+        if (populationSize % 3 != 0) {
+            populationSize += 3 - (populationSize % 3);
         }
         this.populationSize = populationSize;
         this.selection_p = selection_p;
@@ -93,7 +94,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         this.pollution = new double[population.size()];
         for (int i = 0; i < population.size(); i++) {
             fitness[i] = sim.simulate(population.get(i));
-            pollution[i] = sim.simulate(population.get(i));
+            pollution[i] = sim_p.simulate(population.get(i));
         }
     }
 
@@ -106,7 +107,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         double max_rate = this.fitness[0];
         double max_pollution = this.pollution[0];
         double max_combination = max_rate + max_pollution;
-        
+
         for (int counter = 1; counter < fitness.length; counter++) {
             if (fitness[counter] + pollution[counter] > max_combination) {
                 max_rate = fitness[counter];
@@ -114,12 +115,6 @@ public class GeneticAlgorithmForSemaphoreOptimization {
                 max_combination = max_rate + max_pollution;
             }
         }
-        
-        /*double[] best = new double[2];
-        best[0] = max_rate;
-        best[1] = (1-max_pollution);
-        bestOfGeneration.add(best);*/
-        
         return max_combination;
     }
 
@@ -147,7 +142,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         int[][] inverse = new int[12][4];
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 4; j++) {
-                inverse[i][j] = (mask[i][j]+ 1)% 3;
+                inverse[i][j] = (mask[i][j] + 1) % 3;
             }
         }
         return inverse;
@@ -156,52 +151,56 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     private ArrayList<boolean[][]> probabilistic_tourneau_selection() {
         ArrayList<boolean[][]> result = new ArrayList<>();
         Random rand = new Random(System.currentTimeMillis());
-        
-        int indexA, indexB,min;
+
+        int indexA, indexB, min;
         double fitnessA, fitnessB, r;
-        
+        double[] aux = new double[2];
+
         for (int i = 0; i < fitness.length; i++) {
-        
+
             indexA = rand.nextInt(fitness.length);
             indexB = rand.nextInt(fitness.length);
-            if(indexA == indexB){
-                indexB = (indexA + 1)% fitness.length;
+            if (indexA == indexB) {
+                indexB = (indexA + 1) % fitness.length;
             }
-            
-           r = rand.nextDouble();
-           fitnessA = fitness[indexA] + pollution[indexA];
-           fitnessB = fitness[indexB] + pollution[indexB];
-           
-           if(fitnessA > 0d){
-               double[] aux = {fitness[indexA],pollution[indexA]};
-               bestOfGeneration.add(aux);
-           }
-           if(fitnessB > 0d){
-               double[] aux = {fitness[indexB],pollution[indexB]};
-               bestOfGeneration.add(aux);
-           }
-           
-           if((fitnessA < fitnessB && r < selection_p) || (fitnessA > fitnessB && r >= selection_p)){
-               result.add(population.get(indexA));
-           }
-           else 
-               result.add(population.get(indexB));
+
+            r = rand.nextDouble();
+            fitnessA = fitness[indexA] + pollution[indexA];
+            fitnessB = fitness[indexB] + pollution[indexB];
+
+            if (fitnessA > 0d) {
+                aux[0] = fitness[indexA];
+                aux[1] = pollution[indexA];
+
+                bestOfGeneration.add(aux);
+            }
+            if (fitnessB > 0d) {
+                aux[0] = fitness[indexB];
+                aux[1] = pollution[indexB];
+                bestOfGeneration.add(aux);
+            }
+
+            if ((fitnessA < fitnessB && r < selection_p) || (fitnessA > fitnessB && r >= selection_p)) {
+                result.add(population.get(indexA));
+            } else {
+                result.add(population.get(indexB));
+            }
         }
-        
+
         return result;
     }
 
     private ArrayList<boolean[][]> three_parent_crossover() {
-        
+
         ArrayList<boolean[][]> result = new ArrayList<>();
         int[] permutation = generatePermutation();
-        
-        for (int i = 0; i < permutation.length; i+=3) {
-            result.add(applyMask(permutation,i,mask1));
-            result.add(applyMask(permutation,i,mask2));
-            result.add(applyMask(permutation,i,mask3));
+
+        for (int i = 0; i < permutation.length; i += 3) {
+            result.add(applyMask(permutation, i, mask1));
+            result.add(applyMask(permutation, i, mask2));
+            result.add(applyMask(permutation, i, mask3));
         }
-        
+
         return result;
     }
 
@@ -210,7 +209,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         for (int i = 0; i < fitness.length; i++) {
             availablesForPermutation.add(i);
         }
-        
+
         int[] permutation = new int[fitness.length];
         Random rnd = new Random(System.currentTimeMillis());
         int index;
@@ -224,52 +223,51 @@ public class GeneticAlgorithmForSemaphoreOptimization {
 
     private boolean[][] applyMask(int[] permutation, int i, int[][] mask) {
         boolean[][] result = new boolean[12][4];
-        
-        boolean[][] parent1,parent2,parent3,parent_selected;
+
+        boolean[][] parent1, parent2, parent3, parent_selected;
         parent1 = population.get(permutation[i]);
-        parent2 = population.get(permutation[i+1]);
-        parent3 = population.get(permutation[i+2]);
-        
+        parent2 = population.get(permutation[i + 1]);
+        parent3 = population.get(permutation[i + 2]);
+
         int parent_selected_index;
-        
+
         for (int j = 0; j < result.length; j++) {
             for (int k = 0; k < result[0].length; k++) {
                 parent_selected_index = mask[j][k];
-                
-                if(parent_selected_index == 0)
+
+                if (parent_selected_index == 0) {
                     parent_selected = parent1;
-                else if(parent_selected_index == 1)
+                } else if (parent_selected_index == 1) {
                     parent_selected = parent2;
-                else
+                } else {
                     parent_selected = parent3;
-                
+                }
+
                 result[j][k] = parent_selected[j][k];
             }
         }
-        
+
         return result;
     }
 
     private void mutation() {
-        
+
         Random rnd = new Random(System.currentTimeMillis());
         double aux;
-        
+
         for (int i = 0; i < fitness.length; i++) {
             aux = rnd.nextDouble();
-            if(aux <= mutation_p){
-                for(int r = 0; r < 12; r++){
-                    for(int c = 0; c < 4; c++){
-                        if ( rnd.nextDouble() <= mutation_p){
+            if (aux <= mutation_p) {
+                for (int r = 0; r < 12; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        if (rnd.nextDouble() <= mutation_p) {
                             population.get(i)[r][c] = !population.get(i)[r][c];
                         }
                     }
                 }
             }
         }
-            
+
     }
 
-
-    
 }

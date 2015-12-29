@@ -59,10 +59,9 @@ public class SemaphoreSimulator {
         
         Plot2DPanel plot = new Plot2DPanel();
         plot.addScatterPlot("Best Of Generation", fitness, pollution);
-        //plot.setFixedBounds(0, 0, 1);
-        //plot.setFixedBounds(1,0,1);
-        // add a line plot to the PlotPanel
-        //plot.addLinePlot("Best Of Generation", fitness,pollution);
+        plot.getAxis(0).setLabelText("Fitness");
+        plot.getAxis(1).setLabelText("1-Contaminación");
+        
         plot.addLegend("SOUTH");
         
         
