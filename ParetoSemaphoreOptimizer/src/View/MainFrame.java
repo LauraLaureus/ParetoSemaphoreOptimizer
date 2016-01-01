@@ -6,8 +6,9 @@
 package View;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import javax.swing.JPanel;
+import java.util.Map;
 
 /**
  *
@@ -15,18 +16,18 @@ import javax.swing.JPanel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private HashMap<Double,Double> paretoPoints;
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
-        initComponents();
-    }
+  
 
-    public MainFrame(JPanel mmplot, JPanel paretoplot, ArrayList<double[]> fitness, double mfitness) {
+       
+    public MainFrame(ArrayList<double[]> array , double m){
         initComponents();
-        mmPanel = mmplot;
-        pPanel = paretoplot;
-        updateInfo(fitness, mfitness);
+        paretoPoints = new HashMap<>();
+        updateInfo(array,m);
+        pollutionFitnessTextField.setText("200");
     }
 
     /**
@@ -38,8 +39,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mmPanel = new javax.swing.JPanel();
-        pPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ratioFitnessTextField = new javax.swing.JTextField();
@@ -47,6 +46,8 @@ public class MainFrame extends javax.swing.JFrame {
         pollutionFitnessTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         totalMaxFitnessInformation = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        popSizeTextfield = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         numPointsInFrontier = new javax.swing.JTextField();
@@ -55,32 +56,6 @@ public class MainFrame extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        mmPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Max Mean Graph"));
-
-        javax.swing.GroupLayout mmPanelLayout = new javax.swing.GroupLayout(mmPanel);
-        mmPanel.setLayout(mmPanelLayout);
-        mmPanelLayout.setHorizontalGroup(
-            mmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 229, Short.MAX_VALUE)
-        );
-        mmPanelLayout.setVerticalGroup(
-            mmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Pareto Frontier"));
-
-        javax.swing.GroupLayout pPanelLayout = new javax.swing.GroupLayout(pPanel);
-        pPanel.setLayout(pPanelLayout);
-        pPanelLayout.setHorizontalGroup(
-            pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pPanelLayout.setVerticalGroup(
-            pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Max Fitness Information"));
 
@@ -101,6 +76,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         totalMaxFitnessInformation.setEditable(false);
 
+        jLabel6.setText("Population size");
+
+        popSizeTextfield.setEditable(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -112,13 +91,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(totalMaxFitnessInformation, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ratioFitnessTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pollutionFitnessTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6))
+                .addContainerGap(110, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(totalMaxFitnessInformation)
+                    .addComponent(ratioFitnessTextField)
+                    .addComponent(pollutionFitnessTextField)
+                    .addComponent(popSizeTextfield))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -133,13 +114,20 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(pollutionFitnessTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(totalMaxFitnessInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalMaxFitnessInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(14, 14, 14)
+                .addComponent(popSizeTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Pareto Frontier Information"));
 
         jLabel4.setText("Number of points in frontier");
+
+        numPointsInFrontier.setEditable(false);
 
         jLabel5.setText("Points");
 
@@ -149,18 +137,16 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(numPointsInFrontier)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -172,9 +158,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(numPointsInFrontier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,31 +168,20 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mmPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mmPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -219,37 +194,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -257,33 +202,52 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel mmPanel;
     private javax.swing.JTextField numPointsInFrontier;
-    private javax.swing.JPanel pPanel;
     private javax.swing.JTextField pollutionFitnessTextField;
+    private javax.swing.JTextField popSizeTextfield;
     private javax.swing.JTextField ratioFitnessTextField;
     private javax.swing.JTextField totalMaxFitnessInformation;
     // End of variables declaration//GEN-END:variables
 
     private void updateInfo(ArrayList<double[]> fitness, double mfitness) {
         totalMaxFitnessInformation.setText(Double.toString(mfitness));
-
+       
         for (double[] fitnes : fitness) {
-            if (fitnes[1] + fitnes[0] >= mfitness-0.03) {
+            if (fitnes[1] + fitnes[0] >= 0.989d * mfitness) {
                 jList1.setSelectionInterval(0, jList1.getModel().getSize() - 1);
                 List<String> l = jList1.getSelectedValuesList();
-                Object[] l2 = new Object[l.size()+1];
-                l.add(Double.toString(fitnes[0]) + "+" + Double.toString(fitnes[1]));
-                jList1.setListData(l.toArray());
+                Object[] l2 = new Object[l.size() + 1];
+                for (int i = 0; i < l.size(); i++) {
+                    l2[i] = l.get(i);
+                }
+                l2[l.size()] = Double.toString(fitnes[0]) + "x" + Double.toString(fitnes[1]);
+                jList1.setListData(l2);
                 numPointsInFrontier.setText(Integer.toString(jList1.getModel().getSize()));
                 pollutionFitnessTextField.setText(Double.toString(fitnes[1]));
                 ratioFitnessTextField.setText(Double.toString(fitnes[0]));
+                paretoPoints.put(fitnes[0], fitnes[1]);
             }
         }
 
     }
+
+    public ArrayList<double[]> getParetoPoints() {
+        ArrayList<double[]> result = new ArrayList<>();
+        double[] aux = new double[2];
+        for (Map.Entry<Double,Double> paretoPoint : paretoPoints.entrySet()) {
+            aux[0] = paretoPoint.getKey();
+            aux[1] = paretoPoint.getValue();
+        }
+        return result;
+    }
+    
+    
+   
+
+  
 }

@@ -123,7 +123,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     private double calculateMeanFitness() {
         double sum = 0;
         for (int i = 0; i < fitness.length; i++) {
-            sum += 0.5d*fitness[i] + 0.5d*pollution[i];
+            sum += fitness[i] + pollution[i];
         }
         return sum / fitness.length;
     }
