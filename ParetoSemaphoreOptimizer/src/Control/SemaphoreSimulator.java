@@ -1,8 +1,10 @@
 package Control;
 
+import View.MainFrame;
 import geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import org.math.plot.*;
 
 /**
@@ -15,14 +17,18 @@ public class SemaphoreSimulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(200,0.2d,0.02d);
+        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(50,0.2d,0.02d);
         ga.compute();
-        plotMaxAndMean(ga.getX(),ga.getY());
-        plotPareto(ga.getBestOfGeneration());
+        JPanel mmPanel = plotMaxAndMean(ga.getX(),ga.getY());
+        JPanel pareto = plotPareto(ga.getBestOfGeneration());
+        MainFrame frame = new MainFrame(mmPanel, pareto, ga.getBestOfGeneration(), ga.maxValue);
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 
 
-    private static void plotMaxAndMean(double[] max,double[] mean) {
+    private static JPanel plotMaxAndMean(double[] max,double[] mean) {
         Plot2DPanel plot = new Plot2DPanel();
 
         
@@ -33,11 +39,7 @@ public class SemaphoreSimulator {
         
         
         // put the PlotPanel in a JFrame, as a JPanel
-        JFrame frame = new JFrame("Semaphore Simulator Results");
-        frame.setContentPane(plot);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        return plot;
     }
 
     private static double[] getSequenceArrayTo(int b){
@@ -48,7 +50,7 @@ public class SemaphoreSimulator {
         return result;
     }
 
-    private static void plotPareto(ArrayList<double[]> bestOfGeneration) {
+    private static JPanel plotPareto(ArrayList<double[]> bestOfGeneration) {
         double[] fitness = new double[bestOfGeneration.size()];
         double[] pollution = new double[bestOfGeneration.size()];
         
@@ -63,13 +65,7 @@ public class SemaphoreSimulator {
         plot.getAxis(1).setLabelText("1-Contaminación");
         
         plot.addLegend("SOUTH");
+        return plot;
         
-        
-        // put the PlotPanel in a JFrame, as a JPanel
-        JFrame frame = new JFrame("Pareto Results");
-        frame.setContentPane(plot);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
     }
 }

@@ -25,6 +25,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     private final Simulator sim;
     private final PollutionSimulator sim_p;
     private final double selection_p, mutation_p;
+    public double maxValue = 0;
 
     public double[] getX() {
         return maxFitness;
@@ -109,19 +110,20 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         double max_combination = max_rate + max_pollution;
 
         for (int counter = 1; counter < fitness.length; counter++) {
-            if (fitness[counter] + pollution[counter] > max_combination) {
-                max_rate = fitness[counter];
-                max_pollution = pollution[counter];
+            if (0.5d*fitness[counter] + 0.5d*pollution[counter] > max_combination) {
+                max_rate = 0.5d*fitness[counter];
+                max_pollution = 0.5d*pollution[counter];
                 max_combination = max_rate + max_pollution;
             }
         }
+        this.maxValue = max_combination;
         return max_combination;
     }
 
     private double calculateMeanFitness() {
         double sum = 0;
         for (int i = 0; i < fitness.length; i++) {
-            sum += fitness[i] + pollution[i];
+            sum += 0.5d*fitness[i] + 0.5d*pollution[i];
         }
         return sum / fitness.length;
     }
@@ -165,8 +167,8 @@ public class GeneticAlgorithmForSemaphoreOptimization {
             }
 
             r = rand.nextDouble();
-            fitnessA = fitness[indexA] + pollution[indexA];
-            fitnessB = fitness[indexB] + pollution[indexB];
+            fitnessA = 0.5d*fitness[indexA] + 0.5d*pollution[indexA];
+            fitnessB = 0.5d*fitness[indexB] + 0.5d*pollution[indexB];
 
             if (fitnessA > 0d) {
                 aux[0] = fitness[indexA];
