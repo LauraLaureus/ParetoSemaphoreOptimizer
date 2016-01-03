@@ -46,7 +46,7 @@ public class PollutionSimulator {
         }
         
         this.reset();
-        return 1-fitness/7200;
+        return 1-(fitness/(52*7200));
 
     }
 
@@ -144,7 +144,7 @@ public class PollutionSimulator {
             h2.updateInRange(8, 8);
             h2.updateInRange(10, 13);
         }
-        return result/44d;
+        return result;
     }
 
     public void reset() {

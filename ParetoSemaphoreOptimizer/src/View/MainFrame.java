@@ -7,7 +7,6 @@ package View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,11 +22,10 @@ public class MainFrame extends javax.swing.JFrame {
   
 
        
-    public MainFrame(ArrayList<double[]> array , double m){
+    public MainFrame(HashMap<Double,Double> array ){
         initComponents();
         paretoPoints = new HashMap<>();
-        updateInfo(array,m);
-        pollutionFitnessTextField.setText("200");
+        updateInfo(array);
     }
 
     /**
@@ -48,12 +46,16 @@ public class MainFrame extends javax.swing.JFrame {
         totalMaxFitnessInformation = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         popSizeTextfield = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        consideredPointsTextField = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         numPointsInFrontier = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +81,12 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel6.setText("Population size");
 
         popSizeTextfield.setEditable(false);
+        popSizeTextfield.setText("200");
+
+        jLabel8.setText("Number of Considered Points");
+
+        consideredPointsTextField.setEditable(false);
+        consideredPointsTextField.setText("40000");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -92,14 +100,16 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel6))
-                .addContainerGap(110, Short.MAX_VALUE))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addContainerGap(114, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(totalMaxFitnessInformation)
                     .addComponent(ratioFitnessTextField)
                     .addComponent(pollutionFitnessTextField)
-                    .addComponent(popSizeTextfield))
+                    .addComponent(popSizeTextfield)
+                    .addComponent(consideredPointsTextField))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -118,35 +128,48 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(totalMaxFitnessInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(popSizeTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(consideredPointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Pareto Frontier Information"));
 
-        jLabel4.setText("Number of points in frontier");
+        jLabel4.setText("Number of points near the frontier");
 
         numPointsInFrontier.setEditable(false);
 
-        jLabel5.setText("Points");
+        jLabel5.setText("Points Coordinates");
 
         jScrollPane1.setViewportView(jList1);
+
+        jLabel7.setText("Threshold to be near");
+
+        jTextField1.setEditable(false);
+        jTextField1.setText("0.61");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(numPointsInFrontier)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(numPointsInFrontier, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel7))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jTextField1))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -156,10 +179,14 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(numPointsInFrontier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(5, 5, 5)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -176,11 +203,11 @@ public class MainFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -197,16 +224,20 @@ public class MainFrame extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField consideredPointsTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField numPointsInFrontier;
     private javax.swing.JTextField pollutionFitnessTextField;
     private javax.swing.JTextField popSizeTextfield;
@@ -214,26 +245,35 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField totalMaxFitnessInformation;
     // End of variables declaration//GEN-END:variables
 
-    private void updateInfo(ArrayList<double[]> fitness, double mfitness) {
-        totalMaxFitnessInformation.setText(Double.toString(mfitness));
-       
-        for (double[] fitnes : fitness) {
-            if (fitnes[1] + fitnes[0] >= 0.989d * mfitness) {
-                jList1.setSelectionInterval(0, jList1.getModel().getSize() - 1);
-                List<String> l = jList1.getSelectedValuesList();
-                Object[] l2 = new Object[l.size() + 1];
-                for (int i = 0; i < l.size(); i++) {
-                    l2[i] = l.get(i);
-                }
-                l2[l.size()] = Double.toString(fitnes[0]) + "x" + Double.toString(fitnes[1]);
-                jList1.setListData(l2);
-                numPointsInFrontier.setText(Integer.toString(jList1.getModel().getSize()));
-                pollutionFitnessTextField.setText(Double.toString(fitnes[1]));
-                ratioFitnessTextField.setText(Double.toString(fitnes[0]));
-                paretoPoints.put(fitnes[0], fitnes[1]);
+    private void updateInfo(HashMap<Double,Double> fitness) {
+        
+        double max_key = 0;
+        double maxFitness = 0;
+        //TODO encontrar el máximo 
+        for (Map.Entry<Double, Double> rate : fitness.entrySet()) {
+            if(rate.getKey() + rate.getValue()> maxFitness){
+                max_key = rate.getKey();
+                maxFitness = max_key + rate.getValue();
+            }
+             if(rate.getKey() + rate.getValue() >= 0.60999d){
+                paretoPoints.put(rate.getKey(), rate.getValue());
             }
         }
 
+        //TODO actualizar los campos de texto asociados
+        ratioFitnessTextField.setText(Double.toString(max_key));
+        pollutionFitnessTextField.setText(Double.toString(fitness.get(max_key)));
+        totalMaxFitnessInformation.setText(Double.toString(max_key + fitness.get(max_key)));
+        
+        Object[] keys = paretoPoints.keySet().toArray();
+        Object[] values = paretoPoints.values().toArray();
+        Object[] strings = new Object[keys.length];
+        for (int i = 0; i < values.length; i++) {
+            strings[i] = keys[i] + " x " + values[i];
+        }
+        jList1.setListData(strings);
+        numPointsInFrontier.setText(Integer.toString(paretoPoints.size()));
+        
     }
 
     public ArrayList<double[]> getParetoPoints() {

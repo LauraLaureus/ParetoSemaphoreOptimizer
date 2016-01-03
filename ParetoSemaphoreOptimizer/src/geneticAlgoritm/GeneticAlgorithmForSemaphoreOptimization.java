@@ -8,6 +8,7 @@ package geneticAlgoritm;
 import Model.PollutionSimulator;
 import Model.Simulator;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -19,13 +20,12 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     private ArrayList<boolean[][]> population;
     private double[] fitness, pollution;
     private double[] maxFitness, meanFitness;
-    private ArrayList<double[]> bestOfGeneration;
+    private HashMap<Double,Double> bestOfGeneration;
     private int[][] mask1, mask2, mask3;
     private final int populationSize;
     private final Simulator sim;
     private final PollutionSimulator sim_p;
     private final double selection_p, mutation_p;
-    public double maxValue = 0;
 
     public double[] getX() {
         return maxFitness;
@@ -35,7 +35,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         return meanFitness;
     }
 
-    public ArrayList<double[]> getBestOfGeneration() {
+    public HashMap<Double,Double> getBestOfGeneration() {
         return this.bestOfGeneration;
     }
 
@@ -51,7 +51,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         this.sim_p = new PollutionSimulator();
         generateInitialPopulation();
         generateMaskForThreeParentCrossover();
-        this.bestOfGeneration = new ArrayList<>();
+        this.bestOfGeneration = new HashMap<>();
     }
 
     private void generateInitialPopulation() {
@@ -94,8 +94,8 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         this.fitness = new double[population.size()];
         this.pollution = new double[population.size()];
         for (int i = 0; i < population.size(); i++) {
-            fitness[i] = sim.simulate(population.get(i));
-            pollution[i] = sim_p.simulate(population.get(i));
+            fitness[i] = 0.5d * sim.simulate(population.get(i));
+            pollution[i] = 0.5d * sim_p.simulate(population.get(i));
         }
     }
 
@@ -110,13 +110,12 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         double max_combination = max_rate + max_pollution;
 
         for (int counter = 1; counter < fitness.length; counter++) {
-            if (0.5d*fitness[counter] + 0.5d*pollution[counter] > max_combination) {
-                max_rate = 0.5d*fitness[counter];
-                max_pollution = 0.5d*pollution[counter];
+            if (fitness[counter] + pollution[counter] > max_combination) {
+                max_rate = fitness[counter];
+                max_pollution = pollution[counter];
                 max_combination = max_rate + max_pollution;
             }
         }
-        this.maxValue = max_combination;
         return max_combination;
     }
 
@@ -167,19 +166,14 @@ public class GeneticAlgorithmForSemaphoreOptimization {
             }
 
             r = rand.nextDouble();
-            fitnessA = 0.5d*fitness[indexA] + 0.5d*pollution[indexA];
-            fitnessB = 0.5d*fitness[indexB] + 0.5d*pollution[indexB];
+            fitnessA = fitness[indexA] + pollution[indexA];
+            fitnessB = fitness[indexB] + pollution[indexB];
 
             if (fitnessA > 0d) {
-                aux[0] = fitness[indexA];
-                aux[1] = pollution[indexA];
-
-                bestOfGeneration.add(aux);
+                bestOfGeneration.put( fitness[indexA],pollution[indexA]);
             }
             if (fitnessB > 0d) {
-                aux[0] = fitness[indexB];
-                aux[1] = pollution[indexB];
-                bestOfGeneration.add(aux);
+                bestOfGeneration.put( fitness[indexB],pollution[indexB]);
             }
 
             if ((fitnessA < fitnessB && r < selection_p) || (fitnessA > fitnessB && r >= selection_p)) {

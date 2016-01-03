@@ -40,10 +40,10 @@ public abstract class Cell {
                 if (prevStatus == Status.BUSY) {
                     return 1d;
                 }else{
-                    return 0.3d;
+                    return 0;
                 }
             }else{
-                return 0.6d;
+                return 0d;
             }
         }
         /*if(currentStatus == Status.BUSY && nextStatus == Status.FREE)
